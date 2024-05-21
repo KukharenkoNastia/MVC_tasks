@@ -1,36 +1,20 @@
 <?php
 require __DIR__ . './../vendor/autoload.php';
 
-use App\Mail\EmailSender;
-use DockerTask\Classes\Bird;
-use DockerTask\Classes\Cat;
-use DockerTask\Classes\Dog;
-use App\Mail\EmailDecorator;
+$users = [
+    ['name' => 'Alice', 'age' => 25],
+    ['name' => 'Bob', 'age' => 30],
+    ['name' => 'Charlie', 'age' => 22],
+    ['name' => 'Diana', 'age' => 28],
+    ['name' => 'Di', 'age' => 15],
+    ['name' => 'Eve', 'age' => 35]
+];
 
-use DockerTask\Classes\Logger;
+function adult($user){
+    return $user['age'] > 18;
+};
 
-$animals = [new Dog(), new Cat(), new Bird()];
-
-foreach ($animals as $animal) {
-    echo $animal->eat();
-    echo '<br>';
-    echo $animal->sleep();
-    echo '<br>';
-    echo $animal->makeSound();
-    echo '<br>';
-}
-
-$logger = new Logger('file', 'app.log');
-//$logger->log('info', 'This is an informational message');
-//$logger->log('warning', 'This is a warning message');
-//$logger->log('error', 'This is an error message');
-//$logger->log('debug', 'This is a debug message');
-
-$mail = new EmailSender();
-
-$decorator = new EmailDecorator($mail);
-
-$decorator->sendHello('khr.nastasia@gmail.com');
-$decorator->sendNotification('hghgh.jbjh@mail.com');
+print_r('<pre>');
+print_r(array_filter($users, 'adult'));
 
 ?>
