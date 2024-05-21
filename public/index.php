@@ -9,12 +9,9 @@ $textArray = [
     "Желаю вам хорошего дня!"
 ];
 
-if(in_array("Этот массив содержит строки текста.", $textArray)){
-    echo 'Строка есть в массиве';
-} else echo "Нет такого";
+$numbersArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-if(array_search("Этот сив содержит строки текста.", $textArray)){
-    echo 'Строка есть в массиве';
-} else echo "Нет такого";
+print_r('<pre>');
+print_r(array_merge($textArray,$numbersArray));
 
 ?>
