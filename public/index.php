@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 require __DIR__ . './../vendor/autoload.php';
 
 $users = [
@@ -10,7 +12,7 @@ $users = [
     ['name' => 'Eve', 'age' => 35]
 ];
 
-function adult($user){
+function adult($user):bool{
     return $user['age'] > 18;
 };
 
