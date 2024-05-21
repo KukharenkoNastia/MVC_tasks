@@ -1,19 +1,20 @@
 <?php
 require __DIR__ . './../vendor/autoload.php';
 
-$randomNumbers = [5, 3, 9, 1, 8, 7, 2, 6, 4, 0];
+$textArray = [
+    "Привет, мир!",
+    "Добро пожаловать в PHP.",
+    "Массивы в PHP очень гибкие.",
+    "Этот массив содержит строки текста.",
+    "Желаю вам хорошего дня!"
+];
 
-print_r('<pre>');
-print_r($randomNumbers);
+if(in_array("Этот массив содержит строки текста.", $textArray)){
+    echo 'Строка есть в массиве';
+} else echo "Нет такого";
 
-asort($randomNumbers);
-
-print_r('<pre>');
-print_r($randomNumbers);
-
-rsort($randomNumbers);
-
-print_r('<pre>');
-print_r($randomNumbers);
+if(array_search("Этот сив содержит строки текста.", $textArray)){
+    echo 'Строка есть в массиве';
+} else echo "Нет такого";
 
 ?>
