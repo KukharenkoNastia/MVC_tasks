@@ -1,0 +1,11 @@
+services:
+  php:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    volumes:
+      - ./:/var/www/html
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
