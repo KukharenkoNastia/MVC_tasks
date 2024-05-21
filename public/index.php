@@ -4,64 +4,62 @@ declare(strict_types=1);
 
 require __DIR__ . './../vendor/autoload.php';
 
-$users = [
-    "alice" => [
-        "age" => 25,
-        "email" => "alice@example.com",
-        "address" => "123 Main St",
-    ],
-    "bob" => [
-        "age" => 30,
-        "email" => "bob@example.com",
-        "address" => "456 Oak St",
-    ],
-    "charlie" => [
-        "age" => 35,
-        "email" => "charlie@example.com",
-        "address" => "789 Pine St",
-    ],
-    "dave" => [
-        "age" => 40,
-        "email" => "dave@example.com",
-        "address" => "321 Birch St",
-    ],
-    "eve" => [
-        "age" => 28,
-        "email" => "eve@example.com",
-        "address" => "654 Cedar St",
-    ],
-    "frank" => [
-        "age" => 33,
-        "email" => "frank@example.com",
-        "address" => "987 Spruce St",
-    ],
-    "grace" => [
-        "age" => 27,
-        "email" => "grace@example.com",
-        "address" => "159 Elm St",
-    ],
-    "heidi" => [
-        "age" => 32,
-        "email" => "heidi@example.com",
-        "address" => "753 Willow St",
-    ],
-    "ivan" => [
-        "age" => 29,
-        "email" => "ivan@example.com",
-        "address" => "951 Maple St",
-    ],
-    "judy" => [
-        "age" => 34,
-        "email" => "judy@example.com",
-        "address" => "852 Aspen St",
-    ]
+$textArray = [
+    "      Hello, world!  ",
+    "    Welcome to PHP!",
+    "   Массивы в PHP очень гибкие!  ",
+    "  Этот массив содержит строки текста!",
+    "   Желаю вам хорошего дня!"
 ];
 
-foreach ($users as $key => $val){
-    echo $key;
-    echo '<br>';
-    foreach ($val as $itemKey => $itemVal){
-        echo $itemKey.' => '.$itemVal;
-        echo '<br>';
-    }
+function addEnd($el):string
+{
+    return $el.'! The best!';
 }
+
+echo 'Массив после array_map()';
+echo '<br>';
+print_r('<pre>');
+print_r(array_map('addEnd', $textArray));
+
+function trim_el($el):string
+{
+    return trim($el);
+}
+
+echo 'Массив после trim()';
+echo '<br>';
+print_r('<pre>');
+print_r(array_map('trim_el', $textArray));
+
+function string_up($el):string
+{
+    return strtoupper($el);
+}
+
+echo 'Массив после strtoupper()';
+echo '<br>';
+print_r('<pre>');
+print_r(array_map('string_up', $textArray));
+
+function string_low($el):string
+{
+    return strtolower($el);
+}
+
+echo 'Массив после strtolower()';
+echo '<br>';
+print_r('<pre>');
+print_r(array_map('string_low', $textArray));
+
+function string_replace($el):string
+{
+    return str_replace('!', '...', $el);
+}
+
+echo 'Массив после str_replace()';
+echo '<br>';
+print_r('<pre>');
+print_r(array_map('string_replace', $textArray));
+
+

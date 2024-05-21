@@ -13,7 +13,7 @@ class EmailSender implements SenderInterface
     public function __construct() {
         $this->mailer = new PHPMailer(true);
         $this->mailer->isSMTP();
-        $this->mailer->Host = 'mailhog';
+        $this->mailer->Host = 'mailhog_1';
         $this->mailer->Port = 1025;
         $this->mailer->SMTPAuth = true;
     }
