@@ -4,16 +4,17 @@ declare(strict_types=1);
 
 require __DIR__ . './../vendor/autoload.php';
 
-// trim(), str_replace(), preg_replace()
+function replaceString($input):string {
+    return str_replace('e', 'EEE', $input);
+}
 
-function cleanString($input) {
-    $cleanStr = trim($input);
+function replaceRegString($input):string {
+    return preg_replace('/[^\w]/', '', $input);
+}
 
-    $cleanStr = preg_replace('/\s+/', ' ', $cleanStr);
-
-    $cleanStr = preg_replace('/[^\w\s]/u', '', $cleanStr);
-
-    return $cleanStr;
+function position($input):int
+{
+    return strpos($input, 'e');
 }
 
 $strings = [
@@ -28,6 +29,8 @@ foreach ($strings as $str)
 {
     echo $str;
     echo '<br>';
-    echo cleanString($str);
+    echo replaceString($str);
+    echo '<br>';
+    echo 'Элемент е найден в строке '.replaceRegString($str).' на месте '.position(replaceRegString($str));
     echo '<br>';
 }
