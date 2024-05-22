@@ -4,30 +4,19 @@ declare(strict_types=1);
 
 require __DIR__ . './../vendor/autoload.php';
 
-//preg_match(), preg_match_all()
-
-$emailStrings = [
-    'Contact us at support@example.com for more information.',
-    'Send an email to john.doe@example.com or jane_doe123@another-domain.org.',
-    'Our team: team@company.com, hr@company.com, sales@company.com.',
-    'Invalid emails: user@.com, @example.com, user@com.',
-    'Mixed content: Some text, user@example.com, more text, another.user@example.net.',
-    'Personal emails: mike@example.com, sarah.connor@cyberdyne.org, t800@skynet.com.'
+$dates = [
+    '22.05.2024',
+    '2024-05-22',
+    '2024-05-22T14:30:00Z',
+    '22nd May 2024',
+    'Wednesday, May 22, 2024',
+    '2024-05-22 14:30:00',
+    '2023-12-31',
+    '2025-01-01',
+    '2024/05/22'
 ];
 
-function extractEmail($str):array
-{
-    $emailPattern = '/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/';
-    preg_match_all($emailPattern, $str, $matches);
-    return $matches;
+foreach ($dates as $date){
+        echo date('Y-m-d H:i:s', strtotime($date));
+        echo '<br>';
 }
-
-foreach ($emailStrings as $string)
-{
-    echo $string;
-    print_r('<pre>');
-    print_r(extractEmail($string));
-    echo '<br>';
-}
-
-
