@@ -4,62 +4,43 @@ declare(strict_types=1);
 
 require __DIR__ . './../vendor/autoload.php';
 
-$textArray = [
-    "      Hello, world!  ",
-    "    Welcome to PHP!",
-    "   Массивы в PHP очень гибкие!  ",
-    "  Этот массив содержит строки текста!",
-    "   Желаю вам хорошего дня!"
+$sales = [
+    ['product' => 'apple', 'quantity' => 10, 'price' => 1.5],
+    ['product' => 'banana', 'quantity' => 5, 'price' => 1.0],
+    ['product' => 'orange', 'quantity' => 8, 'price' => 1.2],
+    ['product' => 'apple', 'quantity' => 3, 'price' => 1.5],
+    ['product' => 'banana', 'quantity' => 7, 'price' => 1.0],
+    ['product' => 'orange', 'quantity' => 2, 'price' => 1.2],
+    ['product' => 'apple', 'quantity' => 6, 'price' => 1.5],
 ];
 
-function addEnd($el):string
+//Используйте функции array_filter(), array_count_values(), array_sum() or array_reduce()
+
+echo 'Информация по яблокам';
+
+function infoApple($el):bool
 {
-    return $el.'! The best!';
+    return $el['product'] == 'apple';
 }
 
-echo 'Массив после array_map()';
-echo '<br>';
 print_r('<pre>');
-print_r(array_map('addEnd', $textArray));
+print_r(array_filter($sales, 'infoApple'));
 
-function trim_el($el):string
-{
-    return trim($el);
-}
+echo 'Продано проуктов по видам';
 
-echo 'Массив после trim()';
-echo '<br>';
 print_r('<pre>');
-print_r(array_map('trim_el', $textArray));
+print_r(array_count_values(array_column($sales, 'product')));
 
-function string_up($el):string
-{
-    return strtoupper($el);
-}
+echo 'Всего продуктов';
 
-echo 'Массив после strtoupper()';
-echo '<br>';
 print_r('<pre>');
-print_r(array_map('string_up', $textArray));
+print_r(array_sum(array_column($sales, 'quantity')));
 
-function string_low($el):string
-{
-    return strtolower($el);
-}
-
-echo 'Массив после strtolower()';
 echo '<br>';
+echo 'Итого сумма';
+
 print_r('<pre>');
-print_r(array_map('string_low', $textArray));
-
-function string_replace($el):string
-{
-    return str_replace('!', '...', $el);
-}
-
-echo 'Массив после str_replace()';
-echo '<br>';
-print_r('<pre>');
-print_r(array_map('string_replace', $textArray));
-
-
+print_r(array_reduce($sales, function($sum, $sales){
+    $sum += $sales['quantity']*$sales['price'];
+    return $sum;
+}));
