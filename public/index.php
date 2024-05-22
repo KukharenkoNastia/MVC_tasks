@@ -4,33 +4,30 @@ declare(strict_types=1);
 
 require __DIR__ . './../vendor/autoload.php';
 
-function replaceString($input):string {
-    return str_replace('e', 'EEE', $input);
-}
+//preg_match(), preg_match_all()
 
-function replaceRegString($input):string {
-    return preg_replace('/[^\w]/', '', $input);
-}
-
-function position($input):int
-{
-    return strpos($input, 'e');
-}
-
-$strings = [
-    "  Hello,   world!  ",
-    "This    is    a test. ",
-    "    PHP is  great!!! ",
-    " Clean   this   string...  ",
-    "\tWhitespace\tand\nnewlines\n",
+$emailStrings = [
+    "Contact us at support@example.com for more information.",
+    "Send an email to john.doe@example.com or jane_doe123@another-domain.org.",
+    "Our team: team@company.com, hr@company.com, sales@company.com.",
+    "Invalid emails: user@.com, @example.com, user@com.",
+    "Mixed content: Some text, user@example.com, more text, another.user@example.net.",
+    "Personal emails: mike@example.com, sarah.connor@cyberdyne.org, t800@skynet.com."
 ];
 
-foreach ($strings as $str)
+function extractEmail($str):array
 {
-    echo $str;
-    echo '<br>';
-    echo replaceString($str);
-    echo '<br>';
-    echo 'Элемент е найден в строке '.replaceRegString($str).' на месте '.position(replaceRegString($str));
+    $emailPattern = '/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/';
+    preg_match_all($emailPattern, $str, $matches);
+    return $matches;
+}
+
+foreach ($emailStrings as $string)
+{
+    echo $string;
+    print_r('<pre>');
+    print_r(extractEmail($string));
     echo '<br>';
 }
+
+
