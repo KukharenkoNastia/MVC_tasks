@@ -4,124 +4,98 @@ declare(strict_types=1);
 
 require __DIR__ . './../vendor/autoload.php';
 
-function isEmail($email): bool
+function phoneNum($str):string
 {
-    return filter_var($email, FILTER_VALIDATE_EMAIL) == true;
+    $number = preg_replace('/\D/', '', $str);
+    if(strlen($number)==11){
+        $number[0]='7';
+        $number[1]='9';
+        return preg_replace('/(\d)(\d{3})(\d{3})(\d{4})/', '+$1 ($2) $3-$4', $number);
+    } else return 'Недостаточно символов';
 }
 
-$emails = [
-    'test@example.com',
-    'invalid-email',
-    'user.name+tag+sorting@example.com',
-    'user.name@example.co.uk',
-    'user_name@example.com',
-    'user-name@example.com',
-    'user@subdomain.example.com',
-    'user@.com',
-    '@example.com',
-    'user@com',
+$phoneNumbers = [
+    '8 (912) 345-67-89',
+    '+7 912 345 6789',
+    '79123456789',
+    '8-912-345-6789',
+    '89123456789',
+    '897987987'
 ];
 
-foreach ($emails as $email) {
-    if (isEmail($email)) {
-        $format = '%s эмейл валидный';
-        echo sprintf($format, $email);
-    } else {
-        $format = '%s эмейл НЕ валидный';
-        echo sprintf($format, $email);
-    }
+foreach ($phoneNumbers as $num){
+    echo phoneNum($num);
     echo '<br>';
 }
 
-function isFirstUpper($str): bool
-{
-    return preg_match('/^[A-Z]/m', $str) == true;
-}
-
-$text = [
-    'This is a line.',
-    'another line.',
-    'Yet Another Line.',
-    'more lines here.',
-    'Start of the line with uppercase.'
+$dates = [
+    '22.05.2024',
+    '2024-05-22',
+    '2024-05-22T14:30:00Z',
+    '22nd May 2024',
+    'Wednesday, May 22, 2024',
+    '2024-05-22 14:30:00',
+    '2023-12-31',
+    '2025-01-01',
+    '2024/05/22'
 ];
 
-foreach ($text as $str) {
-    if (isFirstUpper($str)) {
-        $format = '%s начинается с большой буквы';
-        echo sprintf($format, $str);
-    } else {
-        $format = '%s начинается с маленькой буквы';
-        echo sprintf($format, $str);
-    }
+foreach ($dates as $date){
+    echo date('d.m.Y', strtotime($date));
     echo '<br>';
 }
 
-$textHtml = '<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Example Page</title>
-</head>
-<body>
-    <h1>Welcome to the Example Page</h1>
-    <p>Visit our <a href="https://www.example.com">homepage</a> for more information.</p>
-    <p>You can also check out our <a href="https://blog.example.com">blog</a> for the latest updates.</p>
-    <p>Contact our support team at <a href="mailto:support@example.com">support@example.com</a> for assistance.</p>
-    <p>Follow us on social media:</p>
-    <ul>
-        <li><a href="https://www.facebook.com/example">Facebook</a></li>
-        <li><a href="https://www.twitter.com/example">Twitter</a></li>
-        <li><a href="https://www.instagram.com/example">Instagram</a></li>
-        <li><a href="https://www.linkedin.com/company/example">LinkedIn</a></li>
-    </ul>
-    <p>For our open-source projects, visit our <a href="https://github.com/example">GitHub</a> page.</p>
-</body>
-</html>';
-
-function findAllhUrl($strings): array
+function isGoodPassword($pass):string
 {
-    $res = [];
-    $regex = '/href="([^\s"]+)/';
-    preg_match_all($regex, $strings, $matches);
-    $res[] = $matches;
-    return $res;
+    if(strlen($pass)>8 && preg_match('/[A-Z]/', $pass) && preg_match('/[A-Z]/', $pass) && preg_match('/[a-z]/', $pass) && preg_match('/\d/', $pass) && preg_match('/[\W_]/', $pass)){
+        return 'Пароль подходит';
+    } return 'Небезопасный пароль';
 }
 
-print_r('<pre>');
-print_r(findAllhUrl($textHtml));
-
-function splitStr($str):array
-{
-    return explode(',', $str);
-}
-
-$string_split = 'explode(string $separator, string $string, int $limit = PHP_INT_MAX): array';
-
-print_r(splitStr($string_split));
-
-$greetings = [
-    'привет',
-    'Привет всем!',
-    'Привет, как дела?',
-    'Скажи привет миру',
-    'Приветствую вас',
-    'привет-привет',
-    'Эй, привет!',
-    'Доброе утро, привет',
-    'Привет и добро пожаловать',
-    'Привет издалека'
+$passwords = [
+    "Passw0rd!",
+    "password",
+    "PASSWORD",
+    "Passw0rd",
+    "P@ssw0rd",
+    "P@ssw"
 ];
 
-print_r(array_map(function ($str)
-{
-    return str_replace('привет', 'здраствуйте', $str);
-}, $greetings));
-
-function replaceHtml($str):string
-{
-    return preg_replace('/<[^>]*>/', '', $str);
+foreach ($passwords as $pass) {
+    echo $pass .' - '. isGoodPassword($pass);
+    echo '<br>';
 }
 
-echo replaceHtml($textHtml);
+function matchIp($ip):array
+{
+    preg_match('/^(([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])$/', $ip, $matches);
+    return $matches;
+}
+
+$ipAddresses = [
+    '192.168.0.1',
+    '255.255.255.255',
+    '0.0.0.0',
+    '256.256.256.256',
+    '192.168.0',
+    '192.168.0.256',
+    '123.456.78.90'
+];
+
+foreach($ipAddresses as $address)
+{
+    if(matchIp($address)){
+        echo $address . ' - Ip адресс соответствует шаблону';
+    } else echo $address . ' - Ip адресс НЕ соответствует шаблону';
+    echo '<br>';
+}
+
+function removeDuplicate($str):string
+{
+    return implode(' ', array_unique(explode(' ', $str)));
+}
+
+$text = "В темном темном лесу, среди зеленых зеленых деревьев, жила жила маленькая маленькая девочка. Она любила любила гулять гулять по лесу и собирать собирать яркие яркие ягоды.";
+
+echo removeDuplicate($text);
+echo '<br>';
