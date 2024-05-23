@@ -4,47 +4,55 @@ declare(strict_types=1);
 
 require __DIR__ . './../vendor/autoload.php';
 
-$str1 = 'NasQWE';
-$str2 = 'EWQNas';
-
-function anagram($str1, $str2):string
+function isEmail($email): bool
 {
-    $arr1 = str_split(strtolower(cleanString($str1)));
-    $arr2 = str_split(strtolower(cleanString($str2)));
-    sort($arr1);
-    sort($arr2);
-    print_r('<pre>');
-    print_r($arr1);
-    print_r($arr2);
-    if(array_diff($arr1, $arr2) || array_diff($arr2, $arr1))
-    {
-        return 'Не являются анаграммой';
-    } else return 'Являются анаграммой';
+    return filter_var($email, FILTER_VALIDATE_EMAIL) == true;
 }
 
-echo $str1;
-echo '<br>';
-echo $str2;
-echo '<br>';
-echo anagram($str1, $str2);
+$emails = [
+    'test@example.com',
+    'invalid-email',
+    'user.name+tag+sorting@example.com',
+    'user.name@example.co.uk',
+    'user_name@example.com',
+    'user-name@example.com',
+    'user@subdomain.example.com',
+    'user@.com',
+    '@example.com',
+    'user@com',
+];
 
-function palindrome($str1, $str2):string
-{
-    $str1 = str_split(strtolower(cleanString($str1)));
-    $str2 = str_split(strtolower(cleanString($str2)));
-
-    if((count($str1) == count($str2)) && ($str1 == array_reverse($str2))){
-        return 'Является палиндромом';
-    } else return 'Не является палиндромом';
+foreach ($emails as $email) {
+    if (isEmail($email)) {
+        $format = '%s эмейл валидный';
+        echo sprintf($format, $email);
+    } else {
+        $format = '%s эмейл НЕ валидный';
+        echo sprintf($format, $email);
+    }
+    echo '<br>';
 }
 
-function cleanString($input):string
+function isFirstUpper($str): bool
 {
-    $cleanStr = trim($input);
-    $cleanStr = preg_replace('/\s+/', ' ', $cleanStr);
-    $cleanStr = str_replace(' ', '', $cleanStr);
-    return preg_replace('/[^\w\s]/u', '', $cleanStr);
+    return preg_match('/^[A-Z]/m', $str) == true;
 }
 
-echo '<br>';
-echo palindrome($str1, $str2);
+$text = [
+    'This is a line.',
+    'another line.',
+    'Yet Another Line.',
+    'more lines here.',
+    'Start of the line with uppercase.'
+];
+
+foreach ($text as $str){
+    if(isFirstUpper($str)){
+        $format = '%s начинается с большой буквы';
+        echo sprintf($format, $str);
+    } else {
+        $format = '%s начинается с маленькой буквы';
+        echo sprintf($format, $str);
+    }
+    echo '<br>';
+}
