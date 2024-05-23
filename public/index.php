@@ -4,37 +4,42 @@ declare(strict_types=1);
 
 require __DIR__ . './../vendor/autoload.php';
 
-$str1 = 'some string';
-$str2 = 'sOme strIng';
-
-function strCompare($str1, $str2): string
+function replaceHtml($str):string
 {
-    if (strcasecmp($str1, $str2) == 0) {
-        $format = 'Строки %s и %s эквивалентны без учета регистра';
-        $res = sprintf($format, $str1, $str2);
-    } else {
-        $format = 'Строки %s и %s не эквивалентны';
-        $res = sprintf($format, $str1, $str2);
+    return preg_replace('/<[^>]*>/', '', $str);
+}
+
+$strs = [
+    '<p>This is a <a href=\'#\'>link</a> in a paragraph.</p>',
+    '<div>Another <span style=\'color: red;\'>line</span> with <strong>HTML</strong> tags.</div>',
+    '<ul><li>Item 1</li><li>Item 2</li></ul>'
+];
+
+print_r('<pre>');
+print_r($strs);
+
+foreach ($strs as $str)
+{
+    echo replaceHtml($str);
+    echo '<br>';
+}
+
+$strUrl= [
+    '<p>This is a <a href="https://example.com">link</a> in a paragraph.</p>',
+    '<p>Here is another link: <a href="http://example.org">example.org</a>.</p>',
+    '<p>And one more: <a href="https://example.net">example.net</a>.</p>'
+];
+
+function matchUrl($strings):array
+{
+    $res = [];
+    foreach ($strings as $str) {
+        $regex = '/href="([^\s"]+)/';
+        preg_match_all($regex, $str, $matches);
+        $res[] = $matches;
     }
     return $res;
 }
 
-echo strCompare($str1, $str2);
-
-$strArr = ['img12.png', 'img10.png', 'img2.png', 'img1.png'];
-
-function strnatcmpString($strArr): array
-{
-    usort($strArr, "strnatcmp");
-    return $strArr;
-}
-
-function sortString($strArr): array
-{
-    sort($strArr);
-    return $strArr;
-}
-
-print_r('<pre>');
-print_r(strnatcmpString($strArr));
-print_r(sortString($strArr));
+print_r($strUrl);
+print_r(matchUrl($strUrl));
