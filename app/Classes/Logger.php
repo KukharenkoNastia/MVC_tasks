@@ -8,7 +8,7 @@ class Logger extends AbstractLogger {
     private string $logFile;
     private string $output;
 
-    public function __construct($output = 'file', $logFile = 'app.log') {
+    public function __construct($logFile = 'app.log', $output = 'file') {
         $this->output = $output;
         $this->logFile = $logFile;
     }
