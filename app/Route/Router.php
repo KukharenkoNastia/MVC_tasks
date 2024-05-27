@@ -15,7 +15,7 @@ class Router{
         $this->routes = $routes;
     }
 
-    public function chooseController($uri)
+    public function dispatch($uri)
     {
         $uri = rtrim($uri, '/');
         if (array_key_exists($uri, $this->routes)) {
