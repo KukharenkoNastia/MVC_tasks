@@ -61,5 +61,3 @@ echo 'Массив после str_replace()';
 echo '<br>';
 print_r('<pre>');
 print_r(array_map('string_replace', $textArray));
-
-
