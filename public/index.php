@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 require __DIR__ . './../vendor/autoload.php';
 
-//preg_match(), preg_match_all()
-
 $emailStrings = [
     'Contact us at support@example.com for more information.',
     'Send an email to john.doe@example.com or jane_doe123@another-domain.org.',
@@ -29,5 +27,3 @@ foreach ($emailStrings as $string)
     print_r(extractEmail($string));
     echo '<br>';
 }
-
-
