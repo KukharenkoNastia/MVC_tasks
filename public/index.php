@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 require __DIR__ . './../vendor/autoload.php';
 
-// trim(), str_replace(), preg_replace()
-
 function cleanString($input) {
     $cleanStr = trim($input);
 
