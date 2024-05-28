@@ -3,8 +3,8 @@
     "type": "autoload",
     "autoload": {
         "psr-4": {
-            "DockerTask\\": "public/",
-            "App\\Mail\\": "public/Mail/"
+            "DockerTask\\": "app/",
+            "App\\Mail\\": "app/Mail/"
         }
     },
     "authors": [
