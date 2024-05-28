@@ -33,11 +33,11 @@ class ComposerStaticInit78304f6002046464d9dd872dab797b64
         ),
         'DockerTask\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/public',
+            0 => __DIR__ . '/../..' . '/app',
         ),
         'App\\Mail\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/public/Mail',
+            0 => __DIR__ . '/../..' . '/app/Mail',
         ),
     );
 
