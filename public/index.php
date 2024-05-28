@@ -43,5 +43,3 @@ print_r('<pre>');
 print_r(array_pop($new_arr));
 echo '<br>';
 print_r($new_arr);
-
-?>
