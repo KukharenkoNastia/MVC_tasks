@@ -34,4 +34,3 @@ function removeDuplicate($str):string
 }
 
 echo removeDuplicate($str);
-
