@@ -1,23 +1,16 @@
 <?php
 
-declare(strict_types=1);
-
 require __DIR__ . './../vendor/autoload.php';
 
-$users = [
-    ['name' => 'Alice', 'age' => 25],
-    ['name' => 'Bob', 'age' => 30],
-    ['name' => 'Charlie', 'age' => 22],
-    ['name' => 'Diana', 'age' => 28],
-    ['name' => 'Di', 'age' => 15],
-    ['name' => 'Eve', 'age' => 35],
-    ['name' => 'Eve2', 'age2s' => 35],
+$textArray = [
+    'Привет, мир!',
+    'Добро пожаловать в PHP.',
+    'Массивы в PHP очень гибкие.',
+    'Этот массив содержит строки текста.',
+    'Желаю вам хорошего дня!'
 ];
 
-function adult(array $user): bool
-{
-    return isset($user['age']) && $user['age'] > 18;
-}
+$numbersArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
 print_r('<pre>');
-print_r(array_filter($users, 'adult'));
+print_r(array_merge($textArray, $numbersArray));
