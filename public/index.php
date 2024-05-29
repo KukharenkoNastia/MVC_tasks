@@ -4,20 +4,18 @@ declare(strict_types=1);
 
 require __DIR__ . './../vendor/autoload.php';
 
-$users = [
-    ['name' => 'Alice', 'age' => 25],
-    ['name' => 'Bob', 'age' => 30],
-    ['name' => 'Charlie', 'age' => 22],
-    ['name' => 'Diana', 'age' => 28],
-    ['name' => 'Di', 'age' => 15],
-    ['name' => 'Eve', 'age' => 35],
-    ['name' => 'Eve2', 'age2s' => 35],
+$textArray = [
+    'Привет, мир!',
+    'Добро пожаловать в PHP.',
+    'Массивы в PHP очень гибкие.',
+    'Этот массив содержит строки текста.',
+    'Желаю вам хорошего дня!'
 ];
 
-function adult(array $user): bool
-{
-    return isset($user['age']) && $user['age'] > 18;
-}
+in_array('Этот массив содержит строки текста.', $textArray) ? $res = 'Строка есть в массиве' : $res = 'Нет такого';
 
-print_r('<pre>');
-print_r(array_filter($users, 'adult'));
+echo $res;
+
+array_search('Этот сив содержит строки текста.', $textArray) ? $str_res = 'Строка есть в массиве' : $str_res = 'Нет такого';
+
+echo $str_res;
