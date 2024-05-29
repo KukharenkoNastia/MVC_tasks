@@ -39,3 +39,4 @@ echo 'Массив после array_pop()';
 print_r(array_pop($new_arr));
 echo '<br>';
 print_r($new_arr);
+
