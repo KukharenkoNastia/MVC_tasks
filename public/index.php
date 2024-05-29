@@ -9,14 +9,14 @@ $users = [
     ['name' => 'Charlie', 'age' => 22],
     ['name' => 'Diana', 'age' => 28],
     ['name' => 'Di', 'age' => 15],
-    ['name' => 'Eve', 'age' => 35]
+    ['name' => 'Eve', 'age' => 35],
+    ['name' => 'Eve2', 'age2s' => 35],
 ];
 
-function adult($user):bool{
-    return $user['age'] > 18;
-};
+function adult(array $user): bool
+{
+    return isset($user['age']) && $user['age'] > 18;
+}
 
 print_r('<pre>');
 print_r(array_filter($users, 'adult'));
-
-?>
