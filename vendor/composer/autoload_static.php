@@ -12,9 +12,9 @@ class ComposerStaticInit78304f6002046464d9dd872dab797b64
             'Psr\\Log\\' => 8,
             'PHPMailer\\PHPMailer\\' => 20,
         ),
-        'D' => 
+        'M' => 
         array (
-            'DockerTask\\' => 11,
+            'MVCTask\\' => 8,
         ),
         'A' => 
         array (
@@ -31,7 +31,7 @@ class ComposerStaticInit78304f6002046464d9dd872dab797b64
         array (
             0 => __DIR__ . '/..' . '/phpmailer/phpmailer/src',
         ),
-        'DockerTask\\' => 
+        'MVCTask\\' => 
         array (
             0 => __DIR__ . '/../..' . '/public',
         ),
