@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 require __DIR__ . './../vendor/autoload.php';
 
-function replaceHtml($str):string
+function replaceHtml(string $str): string
 {
     return preg_replace('/<[^>]*>/', '', $str);
 }
@@ -18,19 +18,18 @@ $strs = [
 print_r('<pre>');
 print_r($strs);
 
-foreach ($strs as $str)
-{
+foreach ($strs as $str) {
     echo replaceHtml($str);
     echo '<br>';
 }
 
-$strUrl= [
+$strUrl = [
     '<p>This is a <a href="https://example.com">link</a> in a paragraph.</p>',
     '<p>Here is another link: <a href="http://example.org">example.org</a>.</p>',
     '<p>And one more: <a href="https://example.net">example.net</a>.</p>'
 ];
 
-function matchUrl($strings):array
+function matchUrl(array $strings): array
 {
     $res = [];
     foreach ($strings as $str) {
