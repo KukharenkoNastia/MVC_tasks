@@ -3,9 +3,11 @@
     "type": "autoload",
     "autoload": {
         "psr-4": {
-            "MVCTask\\": "public/",
-            "App\\Mail\\": "public/Mail/"
-        }
+            "MVCTask\\": "public/"
+        },
+        "files": [
+            "public/func.php"
+        ]
     },
     "authors": [
         {
