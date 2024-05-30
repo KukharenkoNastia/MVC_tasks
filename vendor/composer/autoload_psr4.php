@@ -9,5 +9,4 @@ return array(
     'Psr\\Log\\' => array($vendorDir . '/psr/log/src'),
     'PHPMailer\\PHPMailer\\' => array($vendorDir . '/phpmailer/phpmailer/src'),
     'MVCTask\\' => array($baseDir . '/public'),
-    'App\\Mail\\' => array($baseDir . '/public/Mail'),
 );

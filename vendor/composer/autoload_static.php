@@ -6,6 +6,10 @@ namespace Composer\Autoload;
 
 class ComposerStaticInit78304f6002046464d9dd872dab797b64
 {
+    public static $files = array (
+        '3a3b61e49dbef5adbc4316b1a9b59081' => __DIR__ . '/../..' . '/public/function/functions.php',
+    );
+
     public static $prefixLengthsPsr4 = array (
         'P' => 
         array (
@@ -15,10 +19,6 @@ class ComposerStaticInit78304f6002046464d9dd872dab797b64
         'M' => 
         array (
             'MVCTask\\' => 8,
-        ),
-        'A' => 
-        array (
-            'App\\Mail\\' => 9,
         ),
     );
 
@@ -34,10 +34,6 @@ class ComposerStaticInit78304f6002046464d9dd872dab797b64
         'MVCTask\\' => 
         array (
             0 => __DIR__ . '/../..' . '/public',
-        ),
-        'App\\Mail\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/public/Mail',
         ),
     );
 
