@@ -16,11 +16,12 @@ $dates = [
     '2024/05/22'
 ];
 
-function encoder($str):string
+function encoder(string $str): string
 {
     return base64_encode($str);
 }
-function decoder($str):string
+
+function decoder(string $str): string
 {
     return base64_decode($str);
 }
