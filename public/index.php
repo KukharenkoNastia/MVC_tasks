@@ -4,20 +4,28 @@ declare(strict_types=1);
 
 require __DIR__ . './../vendor/autoload.php';
 
-$users = [
-    ['name' => 'Alice', 'age' => 25],
-    ['name' => 'Bob', 'age' => 30],
-    ['name' => 'Charlie', 'age' => 22],
-    ['name' => 'Diana', 'age' => 28],
-    ['name' => 'Di', 'age' => 15],
-    ['name' => 'Eve', 'age' => 35],
-    ['name' => 'Eve2', 'age2s' => 35],
-];
-
-function adult(array $user): bool
+function cleanString(string $input): string
 {
-    return isset($user['age']) && $user['age'] > 18;
+    $cleanStr = trim($input);
+
+    $cleanStr = preg_replace('/\s+/', ' ', $cleanStr);
+
+    $cleanStr = preg_replace('/[^\w\s]/u', '', $cleanStr);
+
+    return $cleanStr;
 }
 
-print_r('<pre>');
-print_r(array_filter($users, 'adult'));
+$strings = [
+    '  Hello,   world!  ',
+    'This    is    a test. ',
+    '    PHP is  great!!! ',
+    ' Clean   this   string...  ',
+    '\tWhitespace\tand\nnewlines\n',
+];
+
+foreach ($strings as $str) {
+    echo $str;
+    echo '<br>';
+    echo cleanString($str);
+    echo '<br>';
+}
