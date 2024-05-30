@@ -10,7 +10,7 @@ $line =
         'nm nmhhgh terwe 434545 tr'
     ];
 
-function findLinesWithWordCount($text):array
+function findLinesWithWordCount(string $text): array
 {
     $pattern = '/^(?:\b\w+\b\W*){6}$/m';
     preg_match_all($pattern, $text, $matches);
@@ -18,23 +18,22 @@ function findLinesWithWordCount($text):array
 }
 
 print_r('<pre>');
-foreach ($line as $item)
-{
+foreach ($line as $item) {
     print_r(findLinesWithWordCount($item));
 }
 
-function generateHtml($links):array
+function generateHtml(array $links): array
 {
     $urls = [];
-    foreach($links as $url){
+    foreach ($links as $url) {
         $s = htmlspecialchars($url);
         $format = '<a href=\'%s\'>%s</a>';
-        $urls[] = sprintf($format,$s,$s);
+        $urls[] = sprintf($format, $s, $s);
     }
     return $urls;
 }
 
-echo'<br>';
+echo '<br>';
 print_r(generateHtml($line));
 
 
