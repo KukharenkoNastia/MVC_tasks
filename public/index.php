@@ -8,10 +8,9 @@ echo 'Массив до сортировки пузырьком';
 
 function generateArray(): array
 {
-    $numbers = [];
-    for ($i = 0; $i < 10; $i++) {
-        $numbers[] = rand(1, 50);
-    }
+    $numbers = range(10, 20);
+    shuffle($numbers);
+
     return $numbers;
 }
 
@@ -31,7 +30,6 @@ for ($i = 0; $i < count($numbers); $i++) {
 }
 
 echo 'Массив после сортировки пузырьком';
-print_r('<pre>');
 print_r($numbers);
 
 echo 'Массив до сортировки слиянием';
@@ -39,15 +37,16 @@ echo 'Массив до сортировки слиянием';
 function generateArrayMegre(): array
 {
     $numbers_merge = [];
+
     for ($i = 0; $i < 11; $i++) {
         $numbers_merge[] = rand(1, 50);
     }
+
     return $numbers_merge;
 }
 
 $numbers_merge = generateArrayMegre();
 
-print_r('<pre>');
 print_r($numbers_merge);
 
 function sortArr($arr): array
@@ -66,12 +65,11 @@ function sortArr($arr): array
     return sortMerge($arr1, $arr2);
 }
 
-function sortMerge($arr1, $arr2):array
+function sortMerge($arr1, $arr2): array
 {
     $result = [];
     $ind1 = 0;
     $ind2 = 0;
-
 
     while ($ind1 < count($arr1) && $ind2 < count($arr2)) {
         if ($arr1[$ind1] <= $arr2[$ind2]) {
