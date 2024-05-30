@@ -4,20 +4,32 @@ declare(strict_types=1);
 
 require __DIR__ . './../vendor/autoload.php';
 
-$users = [
-    ['name' => 'Alice', 'age' => 25],
-    ['name' => 'Bob', 'age' => 30],
-    ['name' => 'Charlie', 'age' => 22],
-    ['name' => 'Diana', 'age' => 28],
-    ['name' => 'Di', 'age' => 15],
-    ['name' => 'Eve', 'age' => 35],
-    ['name' => 'Eve2', 'age2s' => 35],
+$dates = [
+    '22.05.2024',
+    '2024-05-22',
+    '2024-05-22T14:30:00Z',
+    '22nd May 2024',
+    'Wednesday, May 22, 2024',
+    '2024-05-22 14:30:00',
+    '2023-12-31',
+    '2025-01-01',
+    '2024/05/22'
 ];
 
-function adult(array $user): bool
+function encoder(string $str): string
 {
-    return isset($user['age']) && $user['age'] > 18;
+    return base64_encode($str);
 }
 
-print_r('<pre>');
-print_r(array_filter($users, 'adult'));
+function decoder(string $str): string
+{
+    return base64_decode($str);
+}
+
+foreach ($dates as $date) {
+    $code = encoder($date);
+    echo encoder($date);
+    echo '<br>';
+    echo decoder($code);
+    echo '<br>';
+}
