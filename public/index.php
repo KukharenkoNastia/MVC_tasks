@@ -16,7 +16,7 @@ $dates = [
     '2024/05/22'
 ];
 
-foreach ($dates as $date){
-        echo date('Y-m-d H:i:s', strtotime($date));
-        echo '<br>';
+foreach ($dates as $date) {
+    echo date('Y-m-d H:i:s', strtotime($date));
+    echo '<br>';
 }
