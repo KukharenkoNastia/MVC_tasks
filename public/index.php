@@ -14,13 +14,11 @@ $sales = [
     ['product' => 'apple', 'quantity' => 6, 'price' => 1.5],
 ];
 
-//Используйте функции array_filter(), array_count_values(), array_sum() or array_reduce()
-
 echo 'Информация по яблокам';
 
-function infoApple($el):bool
+function infoApple(array $el): bool
 {
-    return $el['product'] == 'apple';
+    return isset($el['product']) && $el['product'] == 'apple';
 }
 
 print_r('<pre>');
@@ -28,19 +26,19 @@ print_r(array_filter($sales, 'infoApple'));
 
 echo 'Продано проуктов по видам';
 
-print_r('<pre>');
 print_r(array_count_values(array_column($sales, 'product')));
 
-echo 'Всего продуктов';
+echo 'Всего продуктов ';
 
-print_r('<pre>');
 print_r(array_sum(array_column($sales, 'quantity')));
 
 echo '<br>';
-echo 'Итого сумма';
+echo 'Итого сумма ';
 
-print_r('<pre>');
-print_r(array_reduce($sales, function($sum, $sales){
-    $sum += $sales['quantity']*$sales['price'];
+print_r(array_reduce($sales, 'sum', 0.0));
+
+function sum(float $sum, array $sale)
+{
+    $sum += $sale['quantity'] * $sale['price'];
     return $sum;
-}));
+}
