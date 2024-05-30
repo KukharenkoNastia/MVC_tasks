@@ -13,15 +13,14 @@ $emailStrings = [
     'Personal emails: mike@example.com, sarah.connor@cyberdyne.org, t800@skynet.com.'
 ];
 
-function extractEmail($str):array
+function extractEmail(string $str): array
 {
     $emailPattern = '/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/';
     preg_match_all($emailPattern, $str, $matches);
     return $matches;
 }
 
-foreach ($emailStrings as $string)
-{
+foreach ($emailStrings as $string) {
     echo $string;
     print_r('<pre>');
     print_r(extractEmail($string));
