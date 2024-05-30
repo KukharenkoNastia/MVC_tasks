@@ -4,20 +4,31 @@ declare(strict_types=1);
 
 require __DIR__ . './../vendor/autoload.php';
 
-$users = [
-    ['name' => 'Alice', 'age' => 25],
-    ['name' => 'Bob', 'age' => 30],
-    ['name' => 'Charlie', 'age' => 22],
-    ['name' => 'Diana', 'age' => 28],
-    ['name' => 'Di', 'age' => 15],
-    ['name' => 'Eve', 'age' => 35],
-    ['name' => 'Eve2', 'age2s' => 35],
-];
-
-function adult(array $user): bool
+function worldCount(string $string): int
 {
-    return isset($user['age']) && $user['age'] > 18;
+    return str_word_count($string, 0);
 }
 
+function splitStr(string $str, string $separator): array
+{
+    return explode($separator, $str);
+}
+
+function removeDuplicate(string $str): string
+{
+    return implode(' ', array_unique(explode(' ', $str)));
+}
+
+$str = 'Return information information about about words used in a string';
+
+echo $str;
+echo '<br>';
+
+$num = worldCount($str);
+$format = 'Количество слов в строке: %s';
+echo sprintf($format, $num);
+
 print_r('<pre>');
-print_r(array_filter($users, 'adult'));
+print_r(splitStr($str, ' '));
+
+echo removeDuplicate($str);
