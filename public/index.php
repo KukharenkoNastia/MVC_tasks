@@ -4,20 +4,32 @@ declare(strict_types=1);
 
 require __DIR__ . './../vendor/autoload.php';
 
-$users = [
-    ['name' => 'Alice', 'age' => 25],
-    ['name' => 'Bob', 'age' => 30],
-    ['name' => 'Charlie', 'age' => 22],
-    ['name' => 'Diana', 'age' => 28],
-    ['name' => 'Di', 'age' => 15],
-    ['name' => 'Eve', 'age' => 35],
-    ['name' => 'Eve2', 'age2s' => 35],
-];
+$str1 = 'some string';
+$str2 = 'sOme strIng';
 
-function adult(array $user): bool
+function strCompare(string $str1, string $str2): string
 {
-    return isset($user['age']) && $user['age'] > 18;
+    strcasecmp($str1, $str2) === 0 ? $str = 'эквивалентны без учета регистра' : $str = 'не эквивалентны';
+    $format = 'Строки %s и %s %s';
+    return sprintf($format, $str1, $str2, $str);
+}
+
+echo strCompare($str1, $str2);
+
+$strArr = ['img12.png', 'img10.png', 'img2.png', 'img1.png'];
+
+function strnatcmpString(array $strArr): array
+{
+    usort($strArr, "strnatcmp");
+    return $strArr;
+}
+
+function sortString(array $strArr): array
+{
+    sort($strArr);
+    return $strArr;
 }
 
 print_r('<pre>');
-print_r(array_filter($users, 'adult'));
+print_r(strnatcmpString($strArr));
+print_r(sortString($strArr));
