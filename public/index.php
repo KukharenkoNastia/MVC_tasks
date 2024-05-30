@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 require __DIR__ . './../vendor/autoload.php';
 
-function cleanString($input) {
+function cleanString(string $input): string
+{
     $cleanStr = trim($input);
 
     $cleanStr = preg_replace('/\s+/', ' ', $cleanStr);
@@ -15,15 +16,14 @@ function cleanString($input) {
 }
 
 $strings = [
-    "  Hello,   world!  ",
-    "This    is    a test. ",
-    "    PHP is  great!!! ",
-    " Clean   this   string...  ",
-    "\tWhitespace\tand\nnewlines\n",
+    '  Hello,   world!  ',
+    'This    is    a test. ',
+    '    PHP is  great!!! ',
+    ' Clean   this   string...  ',
+    '\tWhitespace\tand\nnewlines\n',
 ];
 
-foreach ($strings as $str)
-{
+foreach ($strings as $str) {
     echo $str;
     echo '<br>';
     echo cleanString($str);
