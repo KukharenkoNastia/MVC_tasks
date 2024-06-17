@@ -3,7 +3,7 @@
         'name' => 'nastya/docker_task',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '3a099e15b670f5e4c054249e0e07945888ad8a06',
+        'reference' => 'c77600890de19f1918f56a21a5e2b4a4902ef8b1',
         'type' => 'autoload',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         'nastya/docker_task' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '3a099e15b670f5e4c054249e0e07945888ad8a06',
+            'reference' => 'c77600890de19f1918f56a21a5e2b4a4902ef8b1',
             'type' => 'autoload',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

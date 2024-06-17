@@ -1,6 +1,6 @@
 <?php
 
-namespace DockerTask\Controllers;
+namespace MVCTask\Controllers;
 
 class HomeController {
     public function index() {
